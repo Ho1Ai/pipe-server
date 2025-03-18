@@ -25,7 +25,3 @@ app.include_router(dependencies.router)
 @app.get('/')
 def start():
     return {'message': 'Trying on FastAPI!'}
-
-# @app.get('/api/package-info')
-# def get_package_info(name: str):
-#     return(pkglist.get(name, {"error":"package not found"}))

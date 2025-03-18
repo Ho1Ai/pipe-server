@@ -6,7 +6,7 @@ router = APIRouter(prefix="/api", tags=['download'])
 
 @router.get('/download')
 async def download_pkg(name: str):
-    pathname = '../testFiles/' + name + '.txt'
+    pathname = '../testFiles/' + name
     test_file = os.path.join('testFiles', name)
     if os.path.exists(test_file):
         return(FileResponse(test_file))
