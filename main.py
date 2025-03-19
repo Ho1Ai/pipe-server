@@ -3,25 +3,10 @@ from router import packageInfo, download, dependencies
 
 app = FastAPI()
 
-pkglist = {
-    "one": {
-        "version": "1.0.0",
-        "description": "test package"
-    }, 
-    "two": {
-        "version": "1.1.1",
-        "description": "test package"
-    }, 
-    "three": {
-        "version": "1.0.2",
-        "description": "test package"
-    }
-} # заглушка, которая будет удалена после организации этого всего дела через базы данных
-
 app.include_router(packageInfo.router)
 app.include_router(download.router)
 app.include_router(dependencies.router)
 
 @app.get('/')
 def start():
-    return {'message': 'Trying on FastAPI!'}
+    return {'message': 'You sent basic request (request to "/"). To use API send request to /api/...'}
