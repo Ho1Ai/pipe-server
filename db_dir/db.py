@@ -1,7 +1,7 @@
 import asyncpg
 from fastapi import FastAPI
 
-DATABASE_URL="postgresql://postgres:root@localhost/pipePackageManager"
+DATABASE_URL="postgresql://postgres:root@localhost/pipepackagemanager"
 
 async def dbConnect():
     return await asyncpg.create_pool(DATABASE_URL)
@@ -15,5 +15,3 @@ async def insertPackage(name: str, version: str, dependencies: list):
     pool = await dbConnect()
     async with pool.acquire() as databasewriter:
         await databasewriter.execute("insert into packagesList (name, version, dependencies) values ($1, $2, $3)", name, version, dependencies)
-
-

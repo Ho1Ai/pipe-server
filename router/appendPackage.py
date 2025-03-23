@@ -1,7 +1,19 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
+from typing import List
+from db_dir.db import fetchPackageInfo, insertPackage
 
-router = APIRouter(prefix='/api', tags=['append-package'])
+class PackageRequest(BaseModel):
+    name: str
+    version: str
+    dependencies: List[str]
+    key: str
+    pkg_type: str
+
+router = APIRouter(prefix='/api')
 
 @router.post('/append-package')
-async def append_package(name: str, key; str):
-    if(key=='testKey12345')
+async def append_package(pkg: PackageRequest):
+    if(pkg.key == 'testKey12345'):
+        await insertPackage(pkg.name, pkg.version, pkg.dependencies, pkg.pkg_type)
+        return {"message":"Package added succesfully"}
