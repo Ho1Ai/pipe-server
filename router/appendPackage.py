@@ -15,5 +15,8 @@ router = APIRouter(prefix='/api')
 @router.post('/append-package')
 async def append_package(pkg: PackageRequest):
     if(pkg.key == 'testKey12345'):
-        await insertPackage(pkg.name, pkg.version, pkg.dependencies, pkg.pkg_type)
-        return {"message":"Package added succesfully"}
+        if(pkg.pkg_type == 'app' or pkg.pkg_type == 'lib'):
+            await insertPackage(pkg.name, pkg.version, pkg.dependencies, pkg.pkg_type)
+            return {"message": "Package added succesfully"}
+        else:
+            return {"message": "You can't use this type of package; you can use next types of packages: lib, app"}
