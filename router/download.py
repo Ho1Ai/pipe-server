@@ -15,5 +15,5 @@ async def download_pkg(name: str):
     if os.path.exists(test_file):
         return(FileResponse(test_file, headers={"X-Pkg-Type":pkg_type}))
     else:
-        return({'Error': 'Package does not exist, unfortunately'})
+        return({'Error': 'Package does not exist, unfortunately... As Steve Jobs said: "Let\'s go invent tomorrow rather than worrying about what happened yesterday". Then go and write this application. Go ahead! Good luck! :D'})
     # return(pkglist.get(name, {"error":"package not found"}))
