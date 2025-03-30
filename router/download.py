@@ -11,9 +11,10 @@ async def download_pkg(name: str):
     pkg_data = await fetchPackageInfo(name)
     #print(pkg_data) # debug
     pkg_type = pkg_data.get('pkg_type') # I don't know do I need it or not... I just keep it here
+    pkg_version = pkg_data.get('version')
     test_file = os.path.join('testFiles', name)
     if os.path.exists(test_file):
-        return(FileResponse(test_file, headers={"X-Pkg-Type":pkg_type}))
+        return(FileResponse(test_file, headers={"X-Pkg-Type":pkg_type, "X-Pkg-Version":pkg_version}))
     else:
         return({'Error': 'Package does not exist, unfortunately... As Steve Jobs said: "Let\'s go invent tomorrow rather than worrying about what happened yesterday". Then go and write this application. Go ahead! Good luck! :D'})
     # return(pkglist.get(name, {"error":"package not found"}))
