@@ -1,7 +1,12 @@
 from fastapi import APIRouter, HTTPException
-from db_dir.db import fetchPackageInfo, insertPackage
+from db_dir.db import fetchPackageInfo, insertPackage, checkPackageExistence
 
 router = APIRouter(prefix="/api")
+
+@router.get('/package-existence')
+async def checkPkgExistenceRequestGetter (name: str):
+    tester = await checkPackageExistence(name)
+    return {"exist": tester} if tester else {'exist': False}
 
 @router.get('/package-info')
 async def get_package_info(name: str):
