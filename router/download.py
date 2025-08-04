@@ -17,8 +17,10 @@ async def download_pkg(name: str):
     pkg_version = pkg_data.get('version')
     pkg_buildtype = pkg_data.get('build_type')
     test_file = os.path.join('testFiles', pkg_name)
+    pkg_server_name = pkg_data.get('server_pkg_name')
+    #print(pkg_server_name)
     if os.path.exists(test_file):
-        return(FileResponse(test_file, headers={"X-Pkg-Type":pkg_type, "X-Pkg-Version":pkg_version, "X-Pkg-Name": pkg_name, "X-Pkg-Buildtype": pkg_buildtype}))
+        return(FileResponse(test_file, headers={"X-Pkg-Type":pkg_type, "X-Pkg-Version":pkg_version, "X-Pkg-Name": pkg_name, "X-Pkg-Buildtype": pkg_buildtype, 'X-Pkg-Package-Name': pkg_server_name}))
     else:
         return({'Error': 'Package does not exist, unfortunately... As Steve Jobs said: "Let\'s go invent tomorrow rather than worrying about what happened yesterday". Then go and write this application. Go ahead! Good luck! :D'})
     # return(pkglist.get(name, {"error":"package not found"}))
